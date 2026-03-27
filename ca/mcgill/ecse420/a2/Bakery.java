@@ -1,3 +1,4 @@
+package ca.mcgill.ecse420.a2;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicIntegerArray;
 import java.util.concurrent.locks.Condition;
@@ -38,7 +39,6 @@ class Bakery implements Lock {
             if (k == i) continue;
 
             while (flag.get(k) == 1 && (label.get(k) < myLabel || (label.get(k) == myLabel && k < i))) {
-                // placeholder
             }
         }
     }

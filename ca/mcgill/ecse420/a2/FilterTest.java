@@ -1,13 +1,14 @@
+package ca.mcgill.ecse420.a2;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 
-public class BakeryTest {
+public class FilterTest {
     private static final int X = 100000;
 
     public static boolean testMutualExclusion(int n) throws InterruptedException {
         ThreadID.reset();
-        Lock bakeryLock = new Bakery(n);
+        Lock filterLock = new Filter(n);
 
         AtomicInteger threadsInCriticalSection = new AtomicInteger(0);
         AtomicBoolean failed = new AtomicBoolean(false);
@@ -17,7 +18,7 @@ public class BakeryTest {
         for (int i = 0; i < n; i++) {
             threads[i] = new Thread(() -> {
                 for (int j = 0; j < X; j++) {
-                    bakeryLock.lock();
+                    filterLock.lock();
                     try {
                         int current = threadsInCriticalSection.incrementAndGet();
                         if (current > 1) {
@@ -29,7 +30,7 @@ public class BakeryTest {
                         for (int k = 0; k < 100; k++) {}
                         threadsInCriticalSection.decrementAndGet();
                     } finally {
-                        bakeryLock.unlock();
+                        filterLock.unlock();
                     }
                 }
             });
