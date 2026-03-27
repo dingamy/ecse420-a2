@@ -7,7 +7,7 @@ public class BakeryOvertakeTest {
 
     public static void testBakery(int n) throws InterruptedException {
         ThreadID.reset();
-        Bakery bakeryLock = new Bakery(n); // use concrete type
+        Bakery bakeryLock = new Bakery(n);
         Lock lock = bakeryLock;
 
         Thread[] threads = new Thread[n];

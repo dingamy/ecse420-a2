@@ -6,7 +6,6 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
 class Filter implements Lock {
-    // Using AtomicIntegerArray ensures visibility across threads
     private final AtomicIntegerArray level;
     private final AtomicIntegerArray victim;
     private final int n;
